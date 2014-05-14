@@ -14,14 +14,15 @@ vpath %.c src
 vpath %.o obj
 vpath MAIN bin
 
-$(EXEC) : main.o base.o
+$(EXEC) : main.o portes.o
 	@ echo
 	@ echo "##### TEST MODE #####" 
 	@ echo
 	$(CC) $(CFLAGS) -o $(EXEC) $(OPATH)*.o $(IFLAGS)
 	mv $@ bin/
 
-main.o:main.c table.h
+main.o:main.c table.h portes.h
+portes.o:portes.c portes.h
 
 %.o : %.c
 	@ echo "$(CC) -c $< -o $@ --WFLAGS $(CFLAGS) " 
