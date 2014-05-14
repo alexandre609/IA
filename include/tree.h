@@ -9,10 +9,12 @@ typedef struct str_tree{
 
 Tree newTree();
 
-Tree addAnd(Tree t);
+Tree addAnd(Tree left, Tree right);
 
-Tree addOr(Tree t);
+Tree addOr(Tree left, Tree right);
 
-Tree addNot(Tree t);
+Tree addNot(Tree left, Tree right);
+
+Tree randomGenerate();
 
 #endif
