@@ -21,8 +21,9 @@ $(EXEC) : main.o portes.o
 	$(CC) $(CFLAGS) -o $(EXEC) $(OPATH)*.o $(IFLAGS)
 	mv $@ bin/
 
-main.o:main.c table.h portes.h
+main.o:main.c table.h portes.h tree.h
 portes.o:portes.c portes.h
+tree.o:tree.c tree.h
 
 %.o : %.c
 	@ echo "$(CC) -c $< -o $@ --WFLAGS $(CFLAGS) " 

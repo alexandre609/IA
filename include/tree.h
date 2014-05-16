@@ -3,9 +3,9 @@
 
 typedef struct str_tree{
 	char op;
-	str_tree *left;
-	str_tree *right;
-}StrTree, Tree*;
+	struct str_tree *left;
+	struct str_tree *right;
+}StrTree, *Tree;
 
 Tree newTree();
 
