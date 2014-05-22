@@ -1,10 +1,11 @@
 #include "tree.h"
 
 Tree newTree(void){
-  // value must be set in random generation
 	Tree t = malloc(sizeof(StrTree));
   t -> left = NULL;
   t -> right = NULL;
+  // value will need to be set in random generation
+  t -> value = 1;
 	return t;
 }
 

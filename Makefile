@@ -14,7 +14,7 @@ vpath %.c src
 vpath %.o obj
 vpath MAIN bin
 
-$(EXEC) : main.o portes.o table.o tree.o
+$(EXEC) : main.o portes.o table.o tree.o evaluation.o
 	@ echo
 	@ echo "##### TEST MODE #####" 
 	@ echo
@@ -25,6 +25,7 @@ main.o:main.c table.h portes.h tree.h
 portes.o:portes.c portes.h
 tree.o:tree.c tree.h
 table.o:table.c table.h
+evaluation.o:evaluation.c evaluation.h tree.h table.h
 
 %.o : %.c
 	@ echo "$(CC) -c $< -o $@ --WFLAGS $(CFLAGS) " 
