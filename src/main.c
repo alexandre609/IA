@@ -4,6 +4,7 @@
 #include "table.h"
 #include "portes.h"
 #include "tree.h"
+#include "evaluation.h"
 
 /**
 * \file main.c
@@ -12,9 +13,13 @@
 
 int main(int argc, char** argv){
   srand(time(NULL));
-  Tree test_tree = newTree();
 
+  Tree test_tree = newTree();
   randomGenerate(test_tree);
+
+  bool evaluation;
+  evaluation = evaluateTree(test_tree);
+  fprintf(stdout,"%s\n", evaluation ? "true" : "false");
 
   free(test_tree->right);
   free(test_tree->left);

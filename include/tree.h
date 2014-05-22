@@ -4,14 +4,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <stdbool.h>
 
-#define MAX_GENERATIONS 25
+#define MAX_GENERATIONS 5
 
 static int timeout = 0;
 
 typedef struct str_tree{
-	char op;
-  char value;
+	int op;
+  bool value;
 	struct str_tree *left;
 	struct str_tree *right;
 }StrTree, *Tree;

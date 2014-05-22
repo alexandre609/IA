@@ -7,9 +7,9 @@
 #include "tree.h"
 #include "table.h"
 
-char evaluateNode(Tree node);
+bool evaluateNode(Tree node);
 
-char evaluateTree(Tree tree);
+bool evaluateTree(Tree tree);
 
 #endif
 
