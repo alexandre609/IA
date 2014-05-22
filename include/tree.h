@@ -2,21 +2,23 @@
 #define __TREE_H_
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 typedef struct str_tree{
 	char op;
+  char value;
 	struct str_tree *left;
 	struct str_tree *right;
 }StrTree, *Tree;
 
 Tree newTree(void);
 
-Tree addAnd(Tree left, Tree right);
+Tree addAnd(Tree tree);
 
-Tree addOr(Tree left, Tree right);
+Tree addOr(Tree tree);
 
-Tree addNot(Tree left);
+Tree addNot(Tree tree);
 
 void changeToAnd(Tree tree);
 
