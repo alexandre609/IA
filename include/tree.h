@@ -5,6 +5,10 @@
 #include <stdio.h>
 #include <time.h>
 
+#define MAX_GENERATIONS 25
+
+static int timeout = 0;
+
 typedef struct str_tree{
 	char op;
   char value;
@@ -26,6 +30,6 @@ void changeToOr(Tree tree);
 
 void changeToNot(Tree tree);
 
-Tree randomGenerate(void);
+void randomGenerate(Tree tree);
 
 #endif

@@ -35,7 +35,7 @@ Tree addNot(Tree tree){
 
 	tree->op = 3;
 	tree->left = sub_tree;
-	tree->right = NULL;
+	tree->right = newTree();
 
 	return tree;
 }
@@ -61,28 +61,34 @@ void changeToNot(Tree tree){
   }
 }
 
-Tree randomGenerate(void){
-  Tree result = newTree();
-
-  srand(time(NULL));
+void randomGenerate(Tree tree){
   int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
 
   switch(r){
     case 1 :
-      result = addAnd(result);
+      tree = addAnd(tree);
       fprintf(stdout,"Created AND node.\n");
       break;
     case 2 :
-      result = addOr(result);
+      tree = addOr(tree);
       fprintf(stdout,"Created OR node.\n");
       break;
     case 3 :
-      result = addNot(result);
+      tree = addNot(tree);
       fprintf(stdout,"Created NOT node.\n");
       break;
     default:
       break;
   }
 
-	return result;
+  timeout++;
+
+  if(timeout != MAX_GENERATIONS){
+    int left_or_right = (rand() % 2);
+    if(left_or_right == 0){
+      randomGenerate(tree->left);
+    }else{
+      randomGenerate(tree->right);
+    }
+  }
 }

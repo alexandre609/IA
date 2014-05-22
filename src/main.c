@@ -11,10 +11,14 @@
 */
 
 int main(int argc, char** argv){
-  Tree test_tree = NULL;
-  test_tree = randomGenerate();    	
+  srand(time(NULL));
+  Tree test_tree = newTree();
+
+  randomGenerate(test_tree);
+
   free(test_tree->right);
   free(test_tree->left);
   free(test_tree);
+
   return 0;
 }
