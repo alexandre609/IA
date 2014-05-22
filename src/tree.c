@@ -1,12 +1,15 @@
 #include "tree.h"
 
 Tree newTree(void){
-	if(Tree t = malloc(sizeof(StrTree)) == NULL){
+  Tree t = NULL;
+	if((t = malloc(sizeof(StrTree))) == NULL){
     perror("malloc ");
     exit(EXIT_FAILURE);
   }
+
   t -> left = NULL;
   t -> right = NULL;
+
   // value will need to be set in random generation
   t -> value = 1;
   t -> op = 0;
@@ -66,34 +69,51 @@ void changeToNot(Tree tree){
   }
 }
 
-void randomGenerate(Tree tree){
-  int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
+void randomGenerateNode(Tree node){
+  if(node != NULL){
+    int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
 
-  switch(r){
-    case 1 :
-      tree = addAnd(tree);
-      fprintf(stdout,"Created AND node.\n");
-      break;
-    case 2 :
-      tree = addOr(tree);
-      fprintf(stdout,"Created OR node.\n");
-      break;
-    case 3 :
-      tree = addNot(tree);
-      fprintf(stdout,"Created NOT node.\n");
-      break;
-    default:
-      break;
-  }
-
-  timeout++;
-
-  if(timeout != MAX_GENERATIONS){
-    int left_or_right = (rand() % 2);
-    if(left_or_right == 0){
-      randomGenerate(tree->left);
-    }else{
-      randomGenerate(tree->right);
+    switch(r){
+      case 1 :
+        node = addAnd(node);
+        fprintf(stdout,"Created AND node.\n");
+        break;
+      case 2 :
+        node = addOr(node);
+        fprintf(stdout,"Created OR node.\n");
+        break;
+      case 3 :
+        node = addNot(node);
+        fprintf(stdout,"Created NOT node.\n");
+        break;
+      default:
+        break;
     }
   }
+}
+
+Tree randomGenerateTree(){
+  Tree tree = newTree();
+  Tree current = newTree();
+  int i;
+
+  tree -> left = newTree();
+  tree -> right = newTree();
+  current = tree;
+
+  // left branches generation
+  for(i=0;i<MAX_GENERATIONS;i++){
+    randomGenerateNode(current->left);
+    randomGenerateNode(current->right);
+    current = current -> left;
+  }
+
+  // right branches generation
+  for(i=0;i<MAX_GENERATIONS;i++){
+    randomGenerateNode(current->left);
+    randomGenerateNode(current->right);
+    current = current -> right;
+  }
+
+  return tree;
 }
