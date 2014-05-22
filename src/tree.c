@@ -1,12 +1,6 @@
 #include "tree.h"
-/*
-typedef struct str_tree{
-	char op;
-	str_tree *left;
-	str_tree *right;
-} Tree*;
-*/
-Tree newTree(){
+
+Tree newTree(void){
 	Tree t = malloc(sizeof(StrTree));
 	return t;
 }
@@ -21,7 +15,7 @@ Tree addAnd(Tree left, Tree right){
 }
 
 Tree addOr(Tree left, Tree right){
-	Tre t = malloc(sizeof(StrTree));
+	Tree t = malloc(sizeof(StrTree));
 	t->op = 2;
 	t->left = left;
 	t->right = right;
@@ -30,9 +24,6 @@ Tree addOr(Tree left, Tree right){
 }
 
 Tree addNot(Tree left){
-	Tree left = malloc(sizeof(StrTree));
-	Tree right = malloc(sizeof(StrTree));
-
 	Tree t = malloc(sizeof(StrTree));
 	t->op = 3;
 	t->left = left;
@@ -41,6 +32,27 @@ Tree addNot(Tree left){
 	return t;
 }
 
-Tree randomGenerate(){
-	return addAnd(addOr(addSimple('a'),addSimple('b')), addNot(addAnd(addSimple('c'),addSimple('d'))));
+Tree randomGenerate(void){
+  Tree base_right = newTree();
+  Tree base_left = newTree();
+  Tree result = NULL;
+
+  srand(time(NULL));
+  int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
+
+  switch(r){
+    case 1 :
+      result = addAnd(base_left, base_right);
+      break;
+    case 2 :
+      result = addOr(base_left, base_right);
+      break;
+    case 3 :
+      result = addNot(base_left);
+      break;
+    default:
+      break;
+  }
+
+	return result;
 }

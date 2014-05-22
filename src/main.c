@@ -11,6 +11,7 @@
 */
 
 int main(int argc, char** argv){
-    	
-	return 0;
+  Tree test_tree = NULL;
+  test_tree = randomGenerate();    	
+  return 0;
 }
