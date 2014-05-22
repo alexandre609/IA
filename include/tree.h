@@ -18,6 +18,12 @@ Tree addOr(Tree left, Tree right);
 
 Tree addNot(Tree left);
 
+void changeToAnd(Tree tree);
+
+void changeToOr(Tree tree);
+
+void changeToNot(Tree tree);
+
 Tree randomGenerate(void);
 
 #endif

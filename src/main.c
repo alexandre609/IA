@@ -13,5 +13,8 @@
 int main(int argc, char** argv){
   Tree test_tree = NULL;
   test_tree = randomGenerate();    	
+  free(test_tree->right);
+  free(test_tree->left);
+  free(test_tree);
   return 0;
 }

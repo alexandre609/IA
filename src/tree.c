@@ -32,6 +32,19 @@ Tree addNot(Tree left){
 	return t;
 }
 
+void changeToAnd(Tree tree){
+  tree->op = 1;
+}
+
+void changeToOr(Tree tree){
+  tree->op = 2;
+}
+
+void changeToNot(Tree tree){
+  tree->op = 3;
+  free(tree->right);
+}
+
 Tree randomGenerate(void){
   Tree base_right = newTree();
   Tree base_left = newTree();
