@@ -11,7 +11,7 @@ Tree newTree(void){
   t -> right = NULL;
 
   // value will need to be set in random generation
-  t -> value = 1;
+  t -> value = true;
   t -> op = 0;
 	return t;
 }
