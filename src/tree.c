@@ -69,51 +69,47 @@ void changeToNot(Tree tree){
   }
 }
 
-void randomGenerateNode(Tree node){
-  if(node != NULL){
-    int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
+void randomGenerateDoor(Tree node){
+  if(node == NULL){
+    node = newTree();
+  }
+  int r = ((rand() % 3) + 1); // result is either 1, 2 or 3
 
-    switch(r){
-      case 1 :
-        node = addAnd(node);
-        fprintf(stdout,"Created AND node.\n");
-        break;
-      case 2 :
-        node = addOr(node);
-        fprintf(stdout,"Created OR node.\n");
-        break;
-      case 3 :
-        node = addNot(node);
-        fprintf(stdout,"Created NOT node.\n");
-        break;
-      default:
-        break;
-    }
+  switch(r){
+    case 1 :
+      node = addAnd(node);
+      fprintf(stdout,"Created AND node.\n");
+      break;
+    case 2 :
+      node = addOr(node);
+      fprintf(stdout,"Created OR node.\n");
+      break;
+    case 3 :
+      node = addNot(node);
+      fprintf(stdout,"Created NOT node.\n");
+      break;
+    default:
+      break;
   }
 }
 
-Tree randomGenerateTree(){
-  Tree tree = newTree();
-  Tree current = newTree();
-  int i;
+void randomGenerateNode(Tree node){
+  randomGenerateDoor(node->left);
+  randomGenerateDoor(node->right);
+}
 
-  tree -> left = newTree();
-  tree -> right = newTree();
-  current = tree;
-
-  // left branches generation
-  for(i=0;i<MAX_GENERATIONS;i++){
-    randomGenerateNode(current->left);
-    randomGenerateNode(current->right);
-    current = current -> left;
+void randomGenerateTree(Tree tree){
+  if(tree->left == NULL){
+    tree -> left = newTree();
+  }
+  if(tree->right == NULL){
+    tree -> right = newTree();
   }
 
-  // right branches generation
-  for(i=0;i<MAX_GENERATIONS;i++){
-    randomGenerateNode(current->left);
-    randomGenerateNode(current->right);
-    current = current -> right;
+  if(timeout < SIZE){
+    randomGenerateNode(tree);
+    timeout++;
+    randomGenerateTree(tree->left);
+    randomGenerateTree(tree->right);
   }
-
-  return tree;
 }

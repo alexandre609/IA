@@ -14,8 +14,8 @@
 int main(int argc, char** argv){
   srand(time(NULL));
 
-  Tree test_tree = NULL;
-  test_tree = randomGenerateTree();
+  Tree test_tree = newTree();
+  randomGenerateTree(test_tree);
 
   bool evaluation;
   evaluation = evaluateTree(test_tree);
